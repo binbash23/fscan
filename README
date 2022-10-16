@@ -1,0 +1,36 @@
+20221016
+
+fscan by Jens Heine <binbash@gmx.net>
+
+Scan a filesystem/path and store the result in a sqlite db. View statistics of
+the scanned files. Find duplicate files and move them to a configurable archive
+fodler. Browse the sqlite database file with your favorite sqlite browser and
+find out more statistics of your files (changes, new/deleted files, ...)
+
+Best regards, Jens
+
+
+./fscan.py -h
+
+Usage: fscan.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -s, --scan            Start filesystem scan
+  -a, --analyze         Start filesystem analysis (hashing and mime type
+                        detection)
+  -m, --moveduplicates  Move duplicate files to archive folder
+  -c, --config          Show configuration
+  -M, --mimetypes       Show mime type statistics
+  -d, --duplicates      Show duplicate files
+  -S, --stats           Show database statistics
+  -l LOGLEVEL, --loglevel=LOGLEVEL
+                        Set loglevel (DEBUG, INFO, WARN, ERROR, CRITICAL)
+  -V, --version         Show fscan version info
+
+  Set configuration parameter:
+    -p PROPERTY, --property=PROPERTY
+                        Set property
+    -v VALUE, --value=VALUE
+                        Set value
+
