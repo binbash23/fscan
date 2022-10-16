@@ -34,3 +34,47 @@ Options:
     -v VALUE, --value=VALUE
                         Set value
 
+
+Examples
+--------
+
+1. Show configuration
+
+> ./fscan.py -c
+
+FILESCAN_COMMIT_BATCH_SIZE   15000                          The commit size for the file scanning process. Default is 50000.
+WORKPATH                     /path_to/Pictures              The path where the filescanner will work.
+FILEHASH_COMMIT_BATCH_SIZE   100                            The commit size for the process that calculates filehashes and mime types. Default is 50.
+FILEHASH_BLOCK_SIZE          1073741824                     The block size that the hash calculator process will use. Default is 1073741824.
+DUPLICATES_ARCHIVE_PATH      /path_to/duplicates            The path where the duplicates will be stored. This path can be inside the WORKPATH
+LOG_LEVEL                    INFO                           Loglevel of the application: CRITICAL, ERROR, WARN, INFO, DEBUG
+
+2. Set scan path in configuration
+
+> ./fscan -p WORKPATH -v /home/myusername/Bilder
+
+3. Set archive path in configuration
+
+> ./fscan -p DUPLICATES_ARCHIVE_PATH -v /home/myusername/Bilder_duplicates
+
+4. Start scanning and hashing
+
+> ./fscan.py -sa
+
+5. Show statistics
+
+> ./fscan.py -S
+
+Filecount                    0                              Total number of files in workpath.
+Filecount 0 byte files       0                              Total number of files with zero byte size.
+Filesize                     0.0 GB                         Total size of all files in workpath.
+Files hashed / not hashed    0 / 0                          Total number of files which have been hashed / not hashed (yet).
+Filesize hashed / not hashed 0.0 GB / 0.0 GB                Total size in bytes of files that have been hashed / not hashed (yet).
+Percent bytes hashed         None                           Percentage of bytes that have been hashed.
+Duplicate files              0                              Total number of files that can be deleted from the workpath because they are duplicates.
+Duplicates filesize          0.0 GB                         Total size in bytes of the duplicate files which can be safely deleted.
+Percent duplicate bytes      None                           Percentage of space from the workpath space usage that is used by duplicates.
+Different mime types         0                              Number of distinct mime types that have been found inside the workpath.
+
+
+
