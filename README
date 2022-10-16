@@ -65,16 +65,16 @@ LOG_LEVEL                    INFO                           Loglevel of the appl
 
 > ./fscan.py -S
 
-Filecount                    0                              Total number of files in workpath.
-Filecount 0 byte files       0                              Total number of files with zero byte size.
-Filesize                     0.0 GB                         Total size of all files in workpath.
-Files hashed / not hashed    0 / 0                          Total number of files which have been hashed / not hashed (yet).
-Filesize hashed / not hashed 0.0 GB / 0.0 GB                Total size in bytes of files that have been hashed / not hashed (yet).
-Percent bytes hashed         None                           Percentage of bytes that have been hashed.
-Duplicate files              0                              Total number of files that can be deleted from the workpath because they are duplicates.
-Duplicates filesize          0.0 GB                         Total size in bytes of the duplicate files which can be safely deleted.
-Percent duplicate bytes      None                           Percentage of space from the workpath space usage that is used by duplicates.
-Different mime types         0                              Number of distinct mime types that have been found inside the workpath.
+Filecount                    116521                         Total number of files in workpath.
+Filecount 0 byte files       5                              Total number of files with zero byte size.
+Filesize                     583.147 GB                     Total size of all files in workpath.
+Files hashed / not hashed    116517 / 0                     Total number of files which have been hashed / not hashed (yet).
+Filesize hashed / not hashed 583.147 GB / 0.0 GB            Total size in bytes of files that have been hashed / not hashed (yet).
+Percent bytes hashed         100.0 %                        Percentage of bytes that have been hashed.
+Duplicate files              704                            Total number of files that can be deleted from the workpath because they are duplicates.
+Duplicates filesize          11.432 GB                      Total size in bytes of the duplicate files which can be safely deleted.
+Percent duplicate bytes      1.96 %                         Percentage of space from the workpath space usage that is used by duplicates.
+Different mime types         42                             Number of distinct mime types that have been found inside the workpath.
 
 
 
