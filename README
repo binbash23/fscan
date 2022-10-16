@@ -76,5 +76,25 @@ Duplicates filesize          11.432 GB                      Total size in bytes 
 Percent duplicate bytes      1.96 %                         Percentage of space from the workpath space usage that is used by duplicates.
 Different mime types         42                             Number of distinct mime types that have been found inside the workpath.
 
+6. Show mime type statistics
 
+> ./fscan.py -M
+
+image/jpeg                                                   100491    
+video/mp4                                                    5207      
+text/html                                                    3152      
+video/quicktime                                              1354      
+audio/x-hx-aac-adts                                          1346      
+audio/x-m4a                                                  894       
+audio/ogg                                                    759       
+application/json                                             622       
+video/x-msvideo                                              479       
+image/png                                                    450       
+application/dicom                                            426       
+image/g3fax                                                  302       
+image/gif                                                    227       
+application/octet-stream                                     227       
+text/xml                                                     145       
+text/plain                                                   93        
+...
 
