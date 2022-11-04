@@ -1,0 +1,1 @@
+/home/melvin/.local/bin/pyinstaller fscan.py --onefile

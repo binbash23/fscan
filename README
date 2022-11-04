@@ -1,0 +1,100 @@
+20221016
+
+fscan by Jens Heine <binbash@gmx.net>
+
+Scan a filesystem/path and store the result in a sqlite db. View statistics of
+the scanned files. Find duplicate files and move them to a configurable archive
+fodler. Browse the sqlite database file with your favorite sqlite browser and
+find out more statistics of your files (changes, new/deleted files, ...)
+
+Best regards, Jens
+
+
+./fscan.py -h
+
+Usage: fscan.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -s, --scan            Start filesystem scan
+  -a, --analyze         Start filesystem analysis (hashing and mime type
+                        detection)
+  -m, --moveduplicates  Move duplicate files to archive folder
+  -c, --config          Show configuration
+  -M, --mimetypes       Show mime type statistics
+  -d, --duplicates      Show duplicate files
+  -S, --stats           Show database statistics
+  -l LOGLEVEL, --loglevel=LOGLEVEL
+                        Set loglevel (DEBUG, INFO, WARN, ERROR, CRITICAL)
+  -V, --version         Show fscan version info
+
+  Set configuration parameter:
+    -p PROPERTY, --property=PROPERTY
+                        Set property
+    -v VALUE, --value=VALUE
+                        Set value
+
+
+Examples
+--------
+
+1. Show configuration
+
+> ./fscan.py -c
+
+FILESCAN_COMMIT_BATCH_SIZE   15000                          The commit size for the file scanning process. Default is 50000.
+WORKPATH                     /path_to/Pictures              The path where the filescanner will work.
+FILEHASH_COMMIT_BATCH_SIZE   100                            The commit size for the process that calculates filehashes and mime types. Default is 50.
+FILEHASH_BLOCK_SIZE          1073741824                     The block size that the hash calculator process will use. Default is 1073741824.
+DUPLICATES_ARCHIVE_PATH      /path_to/duplicates            The path where the duplicates will be stored. This path can be inside the WORKPATH
+LOG_LEVEL                    INFO                           Loglevel of the application: CRITICAL, ERROR, WARN, INFO, DEBUG
+
+2. Set scan path in configuration
+
+> ./fscan -p WORKPATH -v /home/myusername/Bilder
+
+3. Set archive path in configuration
+
+> ./fscan -p DUPLICATES_ARCHIVE_PATH -v /home/myusername/Bilder_duplicates
+
+4. Start scanning and hashing
+
+> ./fscan.py -sa
+
+5. Show statistics
+
+> ./fscan.py -S
+
+Filecount                    116521                         Total number of files in workpath.
+Filecount 0 byte files       5                              Total number of files with zero byte size.
+Filesize                     583.147 GB                     Total size of all files in workpath.
+Files hashed / not hashed    116517 / 0                     Total number of files which have been hashed / not hashed (yet).
+Filesize hashed / not hashed 583.147 GB / 0.0 GB            Total size in bytes of files that have been hashed / not hashed (yet).
+Percent bytes hashed         100.0 %                        Percentage of bytes that have been hashed.
+Duplicate files              704                            Total number of files that can be deleted from the workpath because they are duplicates.
+Duplicates filesize          11.432 GB                      Total size in bytes of the duplicate files which can be safely deleted.
+Percent duplicate bytes      1.96 %                         Percentage of space from the workpath space usage that is used by duplicates.
+Different mime types         42                             Number of distinct mime types that have been found inside the workpath.
+
+6. Show mime type statistics
+
+> ./fscan.py -M
+
+image/jpeg                                                   100491    
+video/mp4                                                    5207      
+text/html                                                    3152      
+video/quicktime                                              1354      
+audio/x-hx-aac-adts                                          1346      
+audio/x-m4a                                                  894       
+audio/ogg                                                    759       
+application/json                                             622       
+video/x-msvideo                                              479       
+image/png                                                    450       
+application/dicom                                            426       
+image/g3fax                                                  302       
+image/gif                                                    227       
+application/octet-stream                                     227       
+text/xml                                                     145       
+text/plain                                                   93        
+...
+

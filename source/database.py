@@ -83,7 +83,7 @@ def createInitialDatabase():
         #  do nothing
     try:
         #print("Creating initial database...")
-        logging.info("Creating initial database...")
+        print("Creating initial database...")
         conn = sqlite3.connect(databaseFilename)
         cursor = conn.cursor()
         cursor.executescript(SQL_CREATE_DATABASE_SCHEMA)

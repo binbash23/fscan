@@ -12,6 +12,7 @@ from fileanalyzer import *
 from duplicatearchiver import *
 from optparse import OptionGroup
 
+VERSION = "fscan by Jens Heine <binbash@gmx.net> version: 20221016"
 #
 # main
 #
@@ -19,7 +20,7 @@ def main():
     parser = optparse.OptionParser()
     parser.add_option("-s", "--scan", action="store_true", dest="scan", default=False, help="Start filesystem scan")
     parser.add_option("-a", "--analyze", action="store_true", dest="analyze", default=False,
-                      help="Start filesystem analysis")
+                      help="Start filesystem analysis (hashing and mime type detection)")
     parser.add_option("-m", "--moveduplicates", action="store_true", dest="moveduplicates", default=False,
                       help="Move duplicate files to archive folder")
     parser.add_option("-c", "--config", action="store_true", dest="config", default=False,
@@ -32,6 +33,8 @@ def main():
                       help="Show database statistics")
     parser.add_option("-l", "--loglevel", action="store", dest="loglevel",
                       help="Set loglevel (DEBUG, INFO, WARN, ERROR, CRITICAL)")
+    parser.add_option("-V", "--version", action="store_true", dest="version", default=False,
+                      help="Show fscan version info")
     group = OptionGroup(parser, "Set configuration parameter")
     group.add_option("-p", "--property", action="store", dest="property", help="Set property")
     group.add_option("-v", "--value", action="store", dest="value", help="Set value")
@@ -64,6 +67,8 @@ def main():
         showDatabaseStats()
     if options.property is not None and options.value is not None:
         setPropertyValue(options.property, options.value)
+    if options.version == True:
+        print(VERSION)
 
 if __name__ == '__main__':
     main()
