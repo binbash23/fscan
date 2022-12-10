@@ -98,3 +98,8 @@ text/xml                                                     145
 text/plain                                                   93        
 ...
 
+
+Info for installing modules under windows:
+
+pip install python-libmagic
+pip install python-magic-bin
