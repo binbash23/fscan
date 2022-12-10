@@ -107,7 +107,7 @@ def startanalyzing():
     bar2 = progressbar.ProgressBar(max_value=filesToAnalyze).start()
     bar2.start()
     for row in sqlresult:
-        log.info("Files left (mime type detection) : " + str(filesToAnalyze))
+        log.debug("Files left (mime type detection) : " + str(filesToAnalyze))
         path = row[0]
         filename = row[1]
         # print(os.path.join(path, filename))
