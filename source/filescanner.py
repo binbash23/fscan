@@ -54,7 +54,7 @@ def startscanning():
     log.info("Collecting files and file information from : " + WORKPATH + "...")
     if WORKPATH == "/path_to/Pictures":
         log.warning("Maybe you have to set the WORKPATH first.")
-        log.warning("Try: fscan.py -p WORKPATH -v /home/<myusername>/Bilder")
+        log.warning("Try: fscan.py -p 'WORKPATH' -v '/home/<myusername>/Bilder'")
     fileCount = 0
     rowsInserted = 0
     for path, currentDirectory, files in os.walk(WORKPATH):

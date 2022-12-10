@@ -1,13 +1,14 @@
 #
 # 20220920 jens heine <binbash@gmx.net>
 #
-import sqlite3
+# import sqlite3
 import os
-import sys
+# import sys
 import hashlib
 import magic
 from configloader import *
 import logging
+import progressbar
 
 #
 # VARIABLES
@@ -21,12 +22,12 @@ FILEHASH_COMMIT_BATCH_SIZE = 100
 # FUNCTIONS
 #
 def getLogger():
-    #_log = log.getLogger("filescanner.fscan")
+    # _log = log.getLogger("filescanner.fscan")
     _log = logging.getLogger()
-    #console_handler = log.StreamHandler()
+    # console_handler = log.StreamHandler()
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    #console_handler.setFormatter(formatter)
-    #_log.addHandler(console_handler)
+    # console_handler.setFormatter(formatter)
+    # _log.addHandler(console_handler)
     # _log.setLevel(log.DEBUG)
     _log.handlers[0].setFormatter(formatter)
     _log.setLevel(getPropertyValue("LOG_LEVEL"))
@@ -60,8 +61,10 @@ def startanalyzing():
     sqlresult = cursor.fetchall()
     filesToHash = len(sqlresult)
     filesHashed = 0
+    bar = progressbar.ProgressBar(max_value=filesToHash).start()
+    bar.start()
     for row in sqlresult:
-        log.info("Files left (calculation hash value) : " + str(filesToHash))
+        log.debug("Files left (calculation hash value) : " + str(filesToHash))
         path = row[0]
         filename = row[1]
         # print(os.path.join(path, filename))
@@ -71,7 +74,7 @@ def startanalyzing():
             log.debug("Hash is: " + str(hashvalue))
         except Exception as e:
             log.error(e)
-            #log.error("Error calculating filehash for file: " + filename + sys.exc_info())
+            # log.error("Error calculating filehash for file: " + filename + sys.exc_info())
             hashvalue = None
         if hashvalue is None:
             updatestring = "update allfiles set filehash = NULL where path = ? and filename = ?"
@@ -81,12 +84,14 @@ def startanalyzing():
         try:
             cursor.execute(updatestring, values)
             filesHashed += 1
-        except Exceptio as e:
+            bar.update(filesHashed)
+        except Exception as e:
             log.error(e)
         filesToHash -= 1
         if filesToHash % FILEHASH_COMMIT_BATCH_SIZE == 0:
             log.debug("Committing updates...")
             conn.commit()
+    bar.finish()
     log.info("Ready: " + str(filesHashed) + " files processed.")
     conn.commit()
 
@@ -110,7 +115,7 @@ def startanalyzing():
             mimetype = magic.from_file(os.path.join(path, filename), mime=True)
             log.debug("Mime type is: " + mimetype)
         except Exception as e:
-            #log.error("Error analyzing file: " + filename + " " + sys.exc_info())
+            # log.error("Error analyzing file: " + filename + " " + sys.exc_info())
             log.error(e)
             mimetype = None
         if mimetype is None:
