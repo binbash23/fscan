@@ -104,6 +104,8 @@ def startanalyzing():
     sqlresult = cursor.fetchall()
     filesToAnalyze = len(sqlresult)
     filesAnalyzed = 0
+    bar2 = progressbar.ProgressBar(max_value=filesToAnalyze).start()
+    bar2.start()
     for row in sqlresult:
         log.info("Files left (mime type detection) : " + str(filesToAnalyze))
         path = row[0]
@@ -129,9 +131,11 @@ def startanalyzing():
         except Exception as e:
             log.error(e)
         filesToAnalyze -= 1
+        bar2.update(filesAnalyzed)
         if filesToAnalyze % FILEHASH_COMMIT_BATCH_SIZE == 0:
             log.debug("Committing updates...")
             conn.commit()
+    bar2.finish()
     log.info("Ready: " + str(filesAnalyzed) + " files processed.")
     conn.commit()
 
