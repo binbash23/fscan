@@ -3,9 +3,9 @@
 # 20221002 jens heine <binbash@gmx.net>
 #
 
-import logging
+# import logging
 import optparse
-from configloader import *
+# from configloader import *
 from database import *
 from filescanner import *
 from fileanalyzer import *
