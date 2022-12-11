@@ -35,8 +35,8 @@ Options:
                         Set value
 
 
-Examples
---------
+HOWTO start using fscan
+-----------------------
 
 1. Show configuration
 
@@ -98,8 +98,19 @@ text/xml                                                     145
 text/plain                                                   93        
 ...
 
+7. Show duplicates
 
-Info for installing modules under windows:
+> ./fscan.py -d
+
+8. Move duplicates into the previous configured folder for duplicates (step 3.)
+
+> ./fscan.py -m
+
+
+
+
+
+Info for installing magic (mime type detection) modules under windows:
 
 pip install python-libmagic
 pip install python-magic-bin
