@@ -8,10 +8,15 @@ fodler. Browse the sqlite database file with your favorite sqlite browser
 (i.e. https://sqlitebrowser.org/dl/) and find out more statistics of your
 files (changes, new/deleted files, ...)
 
+If you do not want to mess around with the python code, you can use the 
+precompiled binaries for linux and windows: 
+https://github.com/binbash23/fscan/tree/master/source/dist
+
 Best regards, Jens
 
 
-./fscan.py -h
+./fscan.py -h 
+(or with the precompiled binaries under windows: fscan.exe or under linux: ./fscan)
 
 Usage: fscan.py [options]
 
