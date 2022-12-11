@@ -12,7 +12,7 @@ from fileanalyzer import *
 from duplicatearchiver import *
 from optparse import OptionGroup
 
-VERSION = "fscan by Jens Heine <binbash@gmx.net> version: 20221016"
+VERSION = "fscan by Jens Heine <binbash@gmx.net> version: 20221211"
 #
 # main
 #
