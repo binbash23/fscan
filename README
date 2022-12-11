@@ -4,8 +4,9 @@ fscan by Jens Heine <binbash@gmx.net>
 
 Scan a filesystem/path and store the result in a sqlite db. View statistics of
 the scanned files. Find duplicate files and move them to a configurable archive
-fodler. Browse the sqlite database file with your favorite sqlite browser and
-find out more statistics of your files (changes, new/deleted files, ...)
+fodler. Browse the sqlite database file with your favorite sqlite browser 
+(i.e. https://sqlitebrowser.org/dl/) and find out more statistics of your
+files (changes, new/deleted files, ...)
 
 Best regards, Jens
 
