@@ -72,6 +72,9 @@ def startanalyzing():
             log.debug("Calculating filehash for: " + filename)
             hashvalue = calculateFilehash(os.path.join(path, filename))
             log.debug("Hash is: " + str(hashvalue))
+        except KeyboardInterrupt as ke:
+            print("Canceled by user.")
+            sys.exit(0)
         except Exception as e:
             log.error(e)
             # log.error("Error calculating filehash for file: " + filename + sys.exc_info())
@@ -86,6 +89,9 @@ def startanalyzing():
             filesHashed += 1
             # print("#" + str(filesHashed))
             bar.update(filesHashed)
+        except KeyboardInterrupt as ke:
+            print("Canceled by user.")
+            sys.exit(0)
         except Exception as e:
             log.error(e)
         filesToHash -= 1
@@ -117,6 +123,9 @@ def startanalyzing():
             # mimetype = calculateFilehash(os.path.join(path, filename))   ###
             mimetype = magic.from_file(os.path.join(path, filename), mime=True)
             log.debug("Mime type is: " + mimetype)
+        except KeyboardInterrupt as ke:
+            print("Canceled by user.")
+            sys.exit(0)
         except Exception as e:
             # log.error("Error analyzing file: " + filename + " " + sys.exc_info())
             log.error(e)
@@ -129,6 +138,9 @@ def startanalyzing():
         try:
             cursor.execute(updatestring, values)
             filesAnalyzed += 1
+        except KeyboardInterrupt as ke:
+            print("Canceled by user.")
+            sys.exit(0)
         except Exception as e:
             log.error(e)
         filesToAnalyze -= 1

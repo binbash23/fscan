@@ -69,6 +69,9 @@ def startscanning():
                 fileSize = fileStats.st_size
                 ctime = fileStats.st_ctime
                 mtime = fileStats.st_mtime
+            except KeyboardInterrupt as ke:
+                print("Canceled by user.")
+                sys.exit(0)
             except Exception as e:
                 log.error(e)
                 continue
@@ -77,6 +80,9 @@ def startscanning():
                     "insert into allfiles_scan (path, filename, filesize, ctime, mtime) values (? , ? , ?, ?, ?)",
                     (path, file, fileSize, ctime, mtime))
                 rowsInserted += 1
+            except KeyboardInterrupt as ke:
+                print("Canceled by user.")
+                sys.exit(0)
             except Exception as e:
                 log.error(fileCount, " : Error inserting file record:", e)
             if fileCount % FILESCAN_COMMIT_BATCH_SIZE == 0:
