@@ -84,6 +84,7 @@ def startanalyzing():
         try:
             cursor.execute(updatestring, values)
             filesHashed += 1
+            # print("#" + str(filesHashed))
             bar.update(filesHashed)
         except Exception as e:
             log.error(e)
