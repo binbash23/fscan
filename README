@@ -1,16 +1,22 @@
-20221016
+20221211
 
 fscan by Jens Heine <binbash@gmx.net>
 
 Scan a filesystem/path and store the result in a sqlite db. View statistics of
 the scanned files. Find duplicate files and move them to a configurable archive
-fodler. Browse the sqlite database file with your favorite sqlite browser and
-find out more statistics of your files (changes, new/deleted files, ...)
+fodler. Browse the sqlite database file with your favorite sqlite browser 
+(i.e. https://sqlitebrowser.org/dl/) and find out more statistics of your
+files (changes, new/deleted files, ...)
+
+If you do not want to mess around with the python code, you can use the 
+precompiled binaries for linux and windows: 
+https://github.com/binbash23/fscan/tree/master/source/dist
 
 Best regards, Jens
 
 
-./fscan.py -h
+./fscan.py -h 
+(or with the precompiled binaries under windows: fscan.exe or under linux: ./fscan)
 
 Usage: fscan.py [options]
 
@@ -35,8 +41,8 @@ Options:
                         Set value
 
 
-Examples
---------
+HOWTO start using fscan
+-----------------------
 
 1. Show configuration
 
@@ -98,8 +104,19 @@ text/xml                                                     145
 text/plain                                                   93        
 ...
 
+7. Show duplicates
 
-Info for installing modules under windows:
+> ./fscan.py -d
+
+8. Move duplicates into the previous configured folder for duplicates (step 3.)
+
+> ./fscan.py -m
+
+
+
+
+
+Info for installing magic (mime type detection) modules under windows:
 
 pip install python-libmagic
 pip install python-magic-bin
